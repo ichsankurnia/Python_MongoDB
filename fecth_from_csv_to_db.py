@@ -22,23 +22,38 @@ data = df.iloc[0:5]
 
 print(data)
 
-# print(data.Y)
 # data['X'] = df['X']
 list_Time = data.Time.tolist()
 list_X = data.X.tolist()
 list_Y = data.Y.tolist()
 list_Z = data.Z.tolist()
 
-data_angin ={
-	"time" : list_Time,
-	"X": list_X,
-	"Y": list_Z,
-	"Z": list_Z,
-}
+# data_angin = {
+# 	"time" : list_Time,
+# 	"X": list_X,
+# 	"Y": list_Z,
+# 	"Z": list_Z,
+# }
 
-db.DataAngin.insert(data_angin)
+list_dataAngin = []
+data_angin = {}
 
-pprint(db.DataAngin.find_one())
+for i in range(len(list_Time)):
+	data_angin = {
+		"time" : list_Time[i],
+		"X" : list_X[i],
+		"Y" : list_Y[i],
+		"Z" : list_Z[i],
+	}
+	list_dataAngin.append(data_angin)
+
+print(list_dataAngin)
+
+for i in list_dataAngin:
+	db.DataAngin.insert(i)
+
+for i in db.DataAngin.find():
+	pprint(i)
 
 # print("X: ", list_X)
 # print("Y: ", list_Y)
