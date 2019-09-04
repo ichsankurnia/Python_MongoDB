@@ -1,3 +1,3 @@
 # Python_MongoDB
 
-install pymongo to connect with your MongoDB
+Install pymongo to connect with your MongoDB
