@@ -27,7 +27,7 @@ new_posts = [
 # create collection
 collection1 = db.collection1
 
-collection1.insert_many(new_posts)
+# collection1.insert_many(new_posts)
 collection1.insert(new_posts)
 
 # show_doc = collection1.find_one()
