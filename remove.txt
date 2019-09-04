@@ -1,1 +1,4 @@
+# drop collection
+db.nama_collection.drop()
+
 db.posts.remove({ title: 'Post Four'})
