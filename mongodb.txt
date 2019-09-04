@@ -1,0 +1,61 @@
+show dbs
+
+use nama_db
+
+db.dropDatabase()
+
+db.createCollection('nama_collection') atau langsung
+
+db.nama_collection.renameCollection('Posts')
+
+db.nama_collection.insert([
+	{nama: 'ichsan', nim: 1316010006, alamat: 'gdc'},
+	{nama: 'mutia', nim: 1316010050, alamat: 'cilandak'},
+	...dst...
+])
+
+show collections
+
+db.nama_collection.find() atau db.nama_collection.find().pretty()
+
+db.nama_collection.find({nama: 'ichsan'}).pretty()
+
+db.posts.find({category: 'News'}).count()
+
+db.posts.find().sort({title: 1}).pretty()
+
+db.posts.find().limit(2)
+
+db.posts.find().sort({title: -1}).limit(2)
+
+db.posts.find().forEach(function(doc) { print('Blog Post: ' + doc.title) })
+
+db.posts.find().sort({title: -1}).limit(2).forEach(function(doc) { print('Blog Post: ' + doc.title) })
+
+db.posts.findOne({ category: 'News' })
+
+db.posts.find({
+	comments: {
+		$elemMatch: {
+			user: 'Mutia Shafira'
+		}
+	}
+}).pretty()
+
+# Search post dari beberapa karakter dari title, buat dulu index dari title, terus dicari berdasarkan index tsb.
+db.posts.createIndex({
+	title: 'text'
+})
+db.posts.find({
+	$text: {
+		$search: "\"Post T\""
+	}
+}).pretty()
+
+# tampilkan hasil yg views nya diatas 6
+db.posts.find({
+	views: {
+		$gt: 6
+	}
+}).pretty()
+#jika ingin menamilkan views 6 ke bawah ganti $gt dg $lte

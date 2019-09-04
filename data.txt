@@ -1,0 +1,39 @@
+db.nama_collection.insert([
+	{ nama: 'ichsan', nim: 1316010006, alamat: 'gdc'},
+	{ nama: 'mutia', nim: 1316010050, alamat: 'cilandak'},
+	...dst...
+])
+
+db.posts.insert({
+	title: 'Post One',
+	body: 'Body of Post One',
+	category: 'News',
+	likes: 4,
+	tags: ['news', 'events'],
+	user: {
+		name: 'Ichsan Kurnia',
+		status: 'author'
+	},
+	date: Date()
+})
+
+db.posts.insertMany([
+	{
+		title: 'Post Two',
+		body: 'Body of Post Two',
+		category: 'Technology',
+		date: Date()
+	},
+	{
+		title: 'Post Three',
+		body: 'Body of Post Three',
+		category: 'Bussiness',
+		date: Date()
+	},
+	{
+		title: 'Post Four',
+		body: 'Body of Post Four',
+		category: 'News',
+		date: Date()
+	}
+])

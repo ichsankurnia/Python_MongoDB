@@ -1,0 +1,62 @@
+db.nama_collection.update({nama: 'ichsan'}, {$set: {ttl: '1997-10-14'}}) # tambah colom baru
+
+db.nama_collection.update({nama: 'ichsan'}, {$set: {alamat: 'padang'}})
+
+# upsert fungsinya untuk mengupdate isi post, dan menghilangkan colom2 yg tidak di update saat itu
+db.posts.update({ title: 'Post Two'},
+	{
+		title: 'Post Two',
+		body: 'New post 2 body',
+		date:  Date()
+	},
+	{
+		upsert: true
+	}
+)
+
+# update colom body dan tambahkan colom category
+db.posts.update({ title: 'Post Two'},
+	{
+		$set: {
+			body: 'Body of post 2',
+			category: 'Technology'
+		}
+	}
+)
+
+# Dalam document post one ada colom likes dan itu bisa ditambah nilainya
+db.posts.update({ title: 'Post One'},
+	{
+		$inc: {
+			likes: 2
+		}
+	}
+)
+
+db.posts.update({ title: 'Post One'},
+	{
+		$rename: {
+			likes: 'views'
+		}
+	}
+)
+
+# tambah kolom comments
+db.posts.update({ title: 'Post One'},
+	{
+		$set: {
+			comments: [
+				{
+					user: 'Mutia Shafira',
+					body: 'Comment One',
+					date: Date()
+				},
+				{
+					user: 'Irfan Kurnia',
+					body: 'Comment Two',
+					date: Date()
+				}
+			]
+		}
+	}
+)
